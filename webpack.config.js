@@ -1,8 +1,11 @@
 var path = require('path');
+
 module.exports = {
-    entry: './es6/main.js',
+    entry: {
+        app: './es6/main.js'
+    },
     output: {
-        path: __dirname,
+        path: __dirname + '/public',
         filename: 'bundle.js'
     },
     module: {
