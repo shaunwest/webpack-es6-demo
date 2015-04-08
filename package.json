@@ -7,11 +7,12 @@
     "clean": "rimraf public/*",
     "fooprebuild": "npm run clean -s",
     "build": "npm run build:scripts -s",
-    "build:scripts": "webpack -w -s",
+    "build:scriptsfoo": "webpack -w --on-first-compile 'npm run serve' --on-compile 'echo hello'",
+    "build:scripts": "webpack -w",
     "watch": "parallelshell 'npm run watch:build -s'",
     "foopreserve": "npm run build -s",
     "serve": "nodemon -w index.js -w public/bundle.js",
-    "build:watch": "parallelshell 'npm run live-reload -s' 'npm run build -s' 'npm run serve -s'",
+    "build:live": "npm run live-reload -s & npm run build:scripts -s",
     "live-reload": "live-reload --port 3001 index.js public/"
   },
   "repository": {
