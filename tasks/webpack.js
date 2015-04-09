@@ -3,25 +3,27 @@
  */
 
 var webpack = require('webpack'),
+  colors = require('colors'),
   path = require('path');
 
 module.exports = function(cb) {
   webpack({
     entry: {
-      app: __dirname + '/../es6/main.js'
+      app: __dirname + '/../js/main.js'
     },
     output: {
-      path: __dirname + '/../public',
+      path: __dirname + '/../public/js',
       filename: 'bundle.js'
     },
     module: {
       loaders: [
-        { test: path.join(__dirname, '/../es6'), loader: 'babel-loader' }
+        { test: path.join(__dirname, '/../js'), loader: 'babel-loader' }
       ]
     },
+    devtool: 'source-map',
     watch: true
   }, function(err, stats) {
-    console.log('Webpack: compile');
+    console.log('Webpack:'.yellow.bold + ' app was compiled');
     cb(err, stats);
   });
 };

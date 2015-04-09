@@ -1,12 +1,15 @@
 /**
  * Created by shaunwest on 4/8/15.
  */
-
-var nodemon = require('nodemon');
-
 'use strict';
 
+var nodemon = require('nodemon'),
+  colors = require('colors');
+
 var started = false;
+var log = function(str) {
+  console.log('Nodemon:'.yellow.bold + ' ' + str);
+};
 
 module.exports = function() {
   if(started) {
@@ -26,15 +29,15 @@ module.exports = function() {
       "NODE_ENV": "development"
     },
     "ext": "js json",
-    watch: ['index.js', 'public/bundle.js']
+    watch: ['index.js', 'public/js/bundle.js']
   });
 
   nodemon.on('start', function () {
-    console.log('Nodemon: app has started');
+    log('app has started');
     started = true;
   }).on('quit', function () {
-    console.log('Nodemon: app has quit');
+    log('app has quit');
   }).on('restart', function (files) {
-    console.log('Nodemon: app restarted due to: ', files);
+    log('app restarted due to: ', files);
   });
 };

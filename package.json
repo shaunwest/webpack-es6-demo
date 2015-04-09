@@ -4,13 +4,8 @@
   "description": "A small demo project that shows how to use webpack for client-side development in ECMAScript 6.",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf public/*",
-    "build": "npm run build:scripts -s",
-    "build:scripts": "webpack",
-    "watch:scripts": "watch webpack es6/",
-    "serve": "nodemon -w index.js -w public/bundle.js",
-    "build:live": "npm run live-reload -s & npm run build:scripts -s",
-    "live-reload": "live-reload --port 3001 index.js public/"
+    "start": "node tasks/watch.js",
+    "clean": "rimraf public/*"
   },
   "repository": {
     "type": "git",
@@ -21,16 +16,17 @@
   "bugs": {
     "url": "https://github.com/shaunwest/webpack-es6-demo/issues"
   },
+  "bin": {
+    "webpackxp": "./build.js"
+  },
   "homepage": "https://github.com/shaunwest/webpack-es6-demo",
   "devDependencies": {
     "babel-core": "^5.0.8",
     "babel-loader": "^5.0.0",
-    "live-reload": "^1.1.0",
+    "colors": "^1.0.3",
     "livereload": "^0.3.7",
     "nodemon": "^1.3.7",
-    "parallelshell": "^1.1.1",
     "rimraf": "^2.3.2",
-    "watch": "^0.16.0",
     "webpack": "^1.7.3"
   },
   "dependencies": {
