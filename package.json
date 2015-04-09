@@ -5,12 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/*",
-    "fooprebuild": "npm run clean -s",
     "build": "npm run build:scripts -s",
-    "build:scriptsfoo": "webpack -w --on-first-compile 'npm run serve' --on-compile 'echo hello'",
-    "build:scripts": "webpack -w",
-    "watch": "parallelshell 'npm run watch:build -s'",
-    "foopreserve": "npm run build -s",
+    "build:scripts": "webpack",
+    "watch:scripts": "watch webpack es6/",
     "serve": "nodemon -w index.js -w public/bundle.js",
     "build:live": "npm run live-reload -s & npm run build:scripts -s",
     "live-reload": "live-reload --port 3001 index.js public/"
@@ -29,9 +26,11 @@
     "babel-core": "^5.0.8",
     "babel-loader": "^5.0.0",
     "live-reload": "^1.1.0",
+    "livereload": "^0.3.7",
     "nodemon": "^1.3.7",
     "parallelshell": "^1.1.1",
     "rimraf": "^2.3.2",
+    "watch": "^0.16.0",
     "webpack": "^1.7.3"
   },
   "dependencies": {
