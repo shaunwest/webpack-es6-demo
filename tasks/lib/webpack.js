@@ -4,26 +4,29 @@
 
 var webpack = require('webpack'),
   colors = require('colors'),
+  config = require('../config'),
   path = require('path');
 
-module.exports = function(cb) {
+module.exports = function (cb, watch) {
+  watch = watch || false;
   webpack({
     entry: {
-      app: __dirname + '/../js/main.js'
+      app: config.jsEntry
     },
     output: {
-      path: __dirname + '/../public/js',
+      path: config.jsOutput,
       filename: 'bundle.js'
     },
     module: {
       loaders: [
-        { test: path.join(__dirname, '/../js'), loader: 'babel-loader' }
+        { test: config.jsSource, loader: 'babel-loader' }
       ]
     },
     devtool: 'source-map',
-    watch: true
-  }, function(err, stats) {
+    watch: watch
+  },
+  function(err, stats) {
     console.log('Webpack:'.yellow.bold + ' app was compiled');
-    cb(err, stats);
+    if (cb) cb(err, stats);
   });
 };

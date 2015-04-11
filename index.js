@@ -27,5 +27,5 @@ initLayout(__dirname + '/public/index.html', function() {
 });
 
 var server = app.listen(3000, function () {
-    console.log('Example app running %j', server.address());
+    console.log('Example app running at http://localhost:3000');
 });

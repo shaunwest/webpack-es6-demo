@@ -3,6 +3,7 @@
  */
 
 var livereload = require('livereload'),
+  config = require('../config'),
   colors = require('colors');
 
 module.exports = function() {
@@ -15,5 +16,5 @@ module.exports = function() {
     debug('LiveReload:'.yellow.bold + ' ' + str);
   };
 
-  server.watch(__dirname + '/../public');
+  server.watch(config.build);
 };

@@ -4,6 +4,7 @@
 'use strict';
 
 var nodemon = require('nodemon'),
+  config = require('../config'),
   colors = require('colors');
 
 var started = false;
@@ -29,7 +30,7 @@ module.exports = function() {
       "NODE_ENV": "development"
     },
     "ext": "js json",
-    watch: ['index.js', 'public/js/bundle.js']
+    watch: ['index.js', config.jsBundle]
   });
 
   nodemon.on('start', function () {
@@ -38,6 +39,6 @@ module.exports = function() {
   }).on('quit', function () {
     log('app has quit');
   }).on('restart', function (files) {
-    log('app restarted due to: ', files);
+    log('app restarted');
   });
 };

@@ -2,9 +2,9 @@
  * Created by shaunwest on 4/8/15.
  */
 
-var webpackTask = require('./webpack'),
-  nodemonTask = require('./nodemon'),
-  livereloadTask = require('./livereload');
+var webpack = require('./lib/webpack'),
+  nodemon = require('./lib/nodemon'),
+  livereload = require('./lib/livereload');
 
-livereloadTask();
-webpackTask(nodemonTask);
+livereload();
+webpack(nodemon, true);
