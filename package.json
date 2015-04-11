@@ -20,9 +20,6 @@
   "bugs": {
     "url": "https://github.com/shaunwest/webpack-es6-demo/issues"
   },
-  "bin": {
-    "webpackxp": "./build.js"
-  },
   "homepage": "https://github.com/shaunwest/webpack-es6-demo",
   "devDependencies": {
     "babel-core": "^5.0.8",
