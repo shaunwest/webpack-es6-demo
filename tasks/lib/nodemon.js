@@ -1,7 +1,8 @@
+'use strict';
+
 /**
  * Created by shaunwest on 4/8/15.
  */
-'use strict';
 
 var nodemon = require('nodemon'),
   config = require('../config'),
@@ -23,9 +24,9 @@ module.exports = function() {
       "node_modules/**/*"
     ],
     "verbose": true,
-    "events": {
+    /*"events": {
       "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
-    },
+    },*/
     "env": {
       "NODE_ENV": "development"
     },

@@ -1,0 +1,10 @@
+[
+  {
+    "path": "/",
+    "module": "home"
+  },
+  {
+    "path": "/foo",
+    "module": "foo"
+  }
+]
