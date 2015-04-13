@@ -1,10 +1,12 @@
 [
   {
     "path": "/",
-    "module": "home"
+    "module": "home",
+    "templateUrl": "/templates/home.html"
   },
   {
     "path": "/foo",
-    "module": "foo"
+    "module": "foo",
+    "templateUrl": "/templates/foo.html"
   }
 ]

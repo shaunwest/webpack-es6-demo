@@ -1,9 +1,9 @@
 /**
- * Created by Shaun on 4/12/2015.
+ * Created by Shaun on 4/13/2015.
  */
 import $ from 'jquery';
 
 export default function(template) {
-  console.log('Home!');
+  console.log('Foo!');
   $('div').html(template);
 }

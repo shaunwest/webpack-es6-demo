@@ -4,8 +4,7 @@
 
 var express = require('express'),
   jsdom = require('jsdom'),
-  XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest,
-  routes = require('./public/routes');
+  XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 var app = express();
 
@@ -26,6 +25,8 @@ var server = app.listen(3000, function () {
   var port = server.address().port;
 
   initLayout(__dirname + '/index.html', function() {
+    global.host = host;
+    global.port = port;
     var bundle = require('./public/js/bundle');
   });
 

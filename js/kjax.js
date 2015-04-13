@@ -1,7 +1,8 @@
 /**
  * Created by Shaun on 5/3/14.
  */
-var promises = [];
+var promises = [],
+  baseUrl = '';
 
 function isFunction(obj) {
   return Object.prototype.toString.call(obj) == '[object Function]';
@@ -16,6 +17,10 @@ function parseResponse (contentType, responseText) {
 
 export function requestGet(url, contentTypeOrOnProgress, onProgress) {
   var promise;
+
+  if(url.substr(0, 7) !== 'http://' && url.substr(0, 8) !== 'https://') {
+    url = baseUrl + url;
+  }
 
   function getHandler(resolve, reject) {
     var req = new XMLHttpRequest();
@@ -60,8 +65,13 @@ export function getPromises() {
   return promises;
 }
 
+function setBaseUrl(url) {
+  baseUrl = url;
+}
+
 export default {
   requestGet: requestGet,
   purge: purge,
+  setBaseUrl: setBaseUrl,
   getPromises: getPromises
 };

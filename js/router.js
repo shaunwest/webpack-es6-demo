@@ -3,22 +3,56 @@
  */
 
 import page from 'page';
-import home from './home.js';
 import kjax from './kjax.js';
 
+function loadModule(moduleName) {
+  if(!moduleName) {
+    return null;
+  }
+
+  // TODO: see about using es6 System.import syntax instead of require()
+  return require('./' + moduleName + '.js');
+}
+
+
 if(typeof server === 'undefined') {
-  page('/', function() {
-    home();
+  // We're in the browser. Use Page routing.
+  kjax.requestGet('/routes.json').then(function(response) {
+    var routes = response.data;
+
+    routes.forEach(function(route) {
+      var m = loadModule(route.module);
+      page(route.path, function() {
+        kjax.requestGet(route.templateUrl).then(function(response) {
+          if(m) {
+            m(response.data);
+          }
+        });
+      });
+    });
   });
   page();
 }
 else {
-  server.get('/', function (req, res) {
-    home();
-    Promise.all(kjax.getPromises()).then(function() {
-      res.send(window.document.documentElement.outerHTML);
-      kjax.purge();
+  // We're on the server. Use Express routing .
+  kjax.setBaseUrl('http://localhost:' + port);
+  kjax.requestGet('/routes.json').then(function(response) {
+    var routes = response.data;
+    routes.forEach(function(route) {
+      var m = loadModule(route.module);
+      server.get(route.path, function (req, res) {
+        kjax.requestGet(route.templateUrl).then(function (response) {
+          if(m) {
+            m(response.data);
+
+            // Wait for all ajax calls to complete before rendering the page
+            Promise.all(kjax.getPromises()).then(function () {
+              res.send(window.document.documentElement.outerHTML);
+              kjax.purge();
+            });
+          }
+        });
+      });
     });
   });
 }
-
