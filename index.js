@@ -3,6 +3,7 @@
  */
 var express = require('express'),
   jsdom = require('jsdom'),
+  XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest,
   routes = require('./public/routes');
 
 var app = express();
@@ -14,18 +15,13 @@ function initLayout(path, cb) {
     global.window = win;
     global.document = win.document;
     global.server = app;
+    global.XMLHttpRequest = XMLHttpRequest;
     cb();
   });
 }
 
 initLayout(__dirname + '/index.html', function() {
   var bundle = require('./public/js/bundle');
-  console.log(bundle);
-  /*routes.forEach(function(route) {
-    app.get('/', function (req, res) {
-      res.send(global.window.document.documentElement.outerHTML);
-    });
-  });*/
 });
 
 var server = app.listen(3000, function () {

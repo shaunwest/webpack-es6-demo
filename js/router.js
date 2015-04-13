@@ -2,17 +2,22 @@
  * Created by Shaun on 4/12/2015.
  */
 
-module.exports = function(app) {
-  if(app) {
-    app.get('/', function (req, res) {
-      res.send(global.window.document.documentElement.outerHTML);
+import page from 'page';
+import home from './home.js';
+import kjax from './kjax.js';
+
+if(typeof server === 'undefined') {
+  page('/', function() {
+    home();
+  });
+  page();
+}
+else {
+  server.get('/', function (req, res) {
+    home();
+    Promise.all(kjax.promises).then(function() {
+      res.send(window.document.documentElement.outerHTML);
     });
-  }
-  else {
-    var page = require('page');
-    page('/', function() {
-      home();
-    });
-    page();
-  }
-};
+  });
+}
+
