@@ -15,8 +15,9 @@ if(typeof server === 'undefined') {
 else {
   server.get('/', function (req, res) {
     home();
-    Promise.all(kjax.promises).then(function() {
+    Promise.all(kjax.getPromises()).then(function() {
       res.send(window.document.documentElement.outerHTML);
+      kjax.purge();
     });
   });
 }

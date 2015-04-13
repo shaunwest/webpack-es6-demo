@@ -1,6 +1,7 @@
 /**
  * Created by shaunwest on 4/4/15.
  */
+
 var express = require('express'),
   jsdom = require('jsdom'),
   XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest,
@@ -20,10 +21,13 @@ function initLayout(path, cb) {
   });
 }
 
-initLayout(__dirname + '/index.html', function() {
-  var bundle = require('./public/js/bundle');
-});
-
 var server = app.listen(3000, function () {
-  console.log('Example app running at http://localhost:3000');
+  var host = server.address().address;
+  var port = server.address().port;
+
+  initLayout(__dirname + '/index.html', function() {
+    var bundle = require('./public/js/bundle');
+  });
+
+  console.log('Example app listening at http://%s:%s', host, port);
 });
