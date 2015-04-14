@@ -1,12 +1,12 @@
 [
   {
     "path": "/",
-    "module": "home",
+    "module": "views/home",
     "templateUrl": "/templates/home.html"
   },
   {
     "path": "/foo",
-    "module": "foo",
+    "module": "views/foo",
     "templateUrl": "/templates/foo.html"
   }
 ]

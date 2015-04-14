@@ -20,8 +20,19 @@ module.exports = function (cb, watch) {
     module: {
       loaders: [
         { test: config.jsSource, loader: 'babel-loader' }
+        /*{
+          test: require.resolve("document-register-element"),
+          loader: 'imports?document=>{}!exports?document.registerElement'
+        }*/
       ]
     },
+    plugins: [
+      new webpack.ProvidePlugin({
+        //'document.registerElement': 'imports?document-register-element!exports?document.registerElement'
+        'document.registerElement': 'document-register-element'
+        //'document.registerElement': 'imports?document=>{}!exports?document.registerElement'
+      })
+    ],
     devtool: 'source-map',
     watch: watch
   },

@@ -14,7 +14,6 @@ function loadModule(moduleName) {
   return require('./' + moduleName + '.js');
 }
 
-
 if(typeof server === 'undefined') {
   // We're in the browser. Use Page routing.
   kjax.requestGet('/routes.json').then(function(response) {
@@ -25,7 +24,7 @@ if(typeof server === 'undefined') {
       page(route.path, function() {
         kjax.requestGet(route.templateUrl).then(function(response) {
           if(m) {
-            m(response.data);
+            m(response.data, route);
           }
         });
       });
@@ -43,7 +42,7 @@ else {
       server.get(route.path, function (req, res) {
         kjax.requestGet(route.templateUrl).then(function (response) {
           if(m) {
-            m(response.data);
+            m(response.data, route);
 
             // Wait for all ajax calls to complete before rendering the page
             Promise.all(kjax.getPromises()).then(function () {
