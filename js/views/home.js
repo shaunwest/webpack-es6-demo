@@ -1,13 +1,10 @@
 /**
  * Created by Shaun on 4/12/2015.
  */
-import $ from 'jquery';
+import {Fragment} from '../lib/fragments.js';
 
-export default function(template) {
-  console.log('Home!');
-  $('div').html(template);
-
-  /*console.log(document.registerElement);
-  var XFoo = document.registerElement('x-foo');
-  document.body.appendChild(new XFoo());*/
+export default function($template) {
+  console.log('home');
+  var $view = Fragment('view');
+  $view.replaceWith($template);
 }

@@ -3,38 +3,33 @@
  */
 
 var webpack = require('webpack'),
+  CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin"),
   colors = require('colors'),
-  config = require('../config'),
-  path = require('path');
+  config = require('../config');
 
 module.exports = function (cb, watch) {
   watch = watch || false;
   webpack({
     entry: {
-      app: config.jsEntry
+      app: config.jsEntry,
+      vendor: ['jquery']
     },
     output: {
       path: config.jsOutput,
       filename: 'bundle.js'
     },
+    plugins: [
+      new CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+    ],
     module: {
       loaders: [
         { test: config.jsSource, loader: 'babel-loader' }
-        /*{
-          test: require.resolve("document-register-element"),
-          loader: 'imports?document=>{}!exports?document.registerElement'
-        }*/
       ]
     },
-    plugins: [
-      new webpack.ProvidePlugin({
-        //'document.registerElement': 'imports?document-register-element!exports?document.registerElement'
-        'document.registerElement': 'document-register-element'
-        //'document.registerElement': 'imports?document=>{}!exports?document.registerElement'
-      })
-    ],
     devtool: 'source-map',
-    watch: watch
+    watch: watch,
+    cache: true,
+    profile: false
   },
   function(err, stats) {
     console.log('Webpack:'.yellow.bold + ' app was compiled');

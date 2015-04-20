@@ -28,7 +28,7 @@ module.exports = function() {
       "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
     },*/
     "env": {
-      "NODE_ENV": "development"
+      "NODE_ENV": "development2"
     },
     "ext": "js json",
     watch: ['index.js', config.jsBundle]

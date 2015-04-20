@@ -4,6 +4,5 @@
 import $ from 'jquery';
 
 export default function(template) {
-  console.log('Foo!');
-  $('div').html(template);
+  $('[data-view]').html(template);
 }

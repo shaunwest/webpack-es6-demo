@@ -1,7 +1,8 @@
-import Point from './Point.js';
-import $ from 'jquery';
-import router from './router.js';
+import {cacheDataElements} from './lib/fragments.js';
+import {route} from './lib/router.js';
 
-//$('div').text('Good point!!!: ' + new Point(1, 23));
+console.log('blah123');
 
+route();
+cacheDataElements();
 

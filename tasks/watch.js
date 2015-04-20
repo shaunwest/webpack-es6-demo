@@ -6,5 +6,5 @@ var webpack = require('./lib/webpack'),
   nodemon = require('./lib/nodemon'),
   livereload = require('./lib/livereload');
 
-livereload();
+//livereload();
 webpack(nodemon, true);
